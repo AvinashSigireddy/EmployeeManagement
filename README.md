@@ -27,23 +27,24 @@ API
 - Employee creation, request_type: POST
    ```
      curl --location 'http://localhost:3000/employees' \
-        --data-raw '{
-            "employee": {
-                "emp_id": "IND331",
-                "first_name": "Avinash123",
-                "last_name": "Sigireddy",
-                "doj": "12/04/2021",
-                "email": "avinash@email.com",
-                "salary_per_month": "98000",
-                "phones_attributes": [{
-                    "phone_type": "Home",
-                    "phone_no": "2732691"
-                },{
-                    "phone_type": "primary",
-                    "phone_no": "9999991233"
-                }]
-            }
-        }'
+      --header 'Content-Type: application/json' \
+      --data-raw '{
+          "employee": {
+              "emp_id": "IND332",
+              "first_name": "Avinash123",
+              "last_name": "Sigireddy",
+              "doj": "12/04/2021",
+              "email": "nani123@email.com",
+              "salary_per_month": "98000",
+              "phones_attributes": [{
+                  "phone_type": "Home",
+                  "phone_no": "2732691"
+              },{
+                  "phone_type": "primary",
+                  "phone_no": "9999991233"
+              }]
+          }
+      }'
 
 - Get employee details with tax_calculation, request_type: GET
   ```
