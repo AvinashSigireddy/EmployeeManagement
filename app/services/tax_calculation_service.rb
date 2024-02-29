@@ -58,5 +58,5 @@ class TaxCalculationService < ApplicationService
         (salary_per_month * (end_date.month+1 - start_month))
       end
     end
-  ends
+  end
 end
