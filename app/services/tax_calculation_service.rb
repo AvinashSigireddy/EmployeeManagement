@@ -40,16 +40,23 @@ class TaxCalculationService < ApplicationService
   end
 
   def received_amount
-    # salary_per_month = employee.salary_per_month
     doj =  employee.doj
     deducted_days = (doj - doj.beginning_of_month).to_i
     start_month = deducted_days.zero? ? (doj.month) : (doj.month + 1)
     @received_salary ||= if doj.month >= 4
       end_date = Date.new(Time.now.year,12,31)
-      (salary_per_month * ((end_date.month+1 - start_month)+3)) +(salary_per_month - (salary_per_month/deducted_days))
+      unless deducted_days.zero?
+        (salary_per_month * ((end_date.month+1 - start_month)+3)) +(salary_per_month - (salary_per_month/deducted_days))
+      else
+        (salary_per_month * ((end_date.month+1 - start_month)+3))
+      end
     else
       end_date = Date.new(Time.now.year,3,31)
-      (salary_per_month * (end_date.month+1 - start_month)) + (salary_per_month - (salary_per_month/deducted_days))
+      unless deducted_days.zero?
+        (salary_per_month * (end_date.month+1 - start_month)) + (salary_per_month - (salary_per_month/deducted_days))
+      else
+        (salary_per_month * (end_date.month+1 - start_month))
+      end
     end
-  end
+  ends
 end
